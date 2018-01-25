@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #move out of release dir
-cd ..
+#cd ..
 
 #Get current version without -SNAPSHOT
 version=$(grep "<version" pom.xml -m 1)
