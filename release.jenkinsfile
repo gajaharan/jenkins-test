@@ -1,0 +1,20 @@
+node {
+
+    def newPomVersion = ""
+    def releasePomVersion = ""
+    stage ('Clear workspace') {
+        step([$class: 'WsCleanup'])
+    }
+
+    stage("Pull") {
+        checkout scm
+    }
+
+    stage("ready release") {
+        sshagent(['gaj']) {
+            sh ("release/ready-release.sh")
+            newPomVersion = "$newVersion"
+            releasePomVersion = "$releaseBranch"
+        }
+    }
+}
