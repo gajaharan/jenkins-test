@@ -17,3 +17,6 @@ releaseBranch="${array[0]}.${array[1]}.${array[2]}"
 
 echo "New Version $newVersion"
 echo "releaseBranch $releaseBranch"
+
+echo newVersion > env.properties
+echo releaseBranch > env.properties

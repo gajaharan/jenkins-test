@@ -13,8 +13,10 @@ node {
     stage("ready release") {
         sshagent(['gaj']) {
             sh ("release/ready-release.sh")
-            newPomVersion = "$newVersion"
-            releasePomVersion = "$releaseBranch"
+            newPomVersion = env.newVersion
+            releasePomVersion = "env.releaseBranch"
+            print "newPomVersion : ${newPomVersion}"
+
         }
     }
 }
