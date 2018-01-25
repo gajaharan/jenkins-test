@@ -12,11 +12,22 @@ node {
 
     stage("ready release") {
         sshagent(['gaj']) {
+            newPomVersion = shellCommandOutput("release/newVersion.sh")
             sh ("release/ready-release.sh")
-            newPomVersion = env.newVersion
-            releasePomVersion = "env.releaseBranch"
+            //newPomVersion = env.newVersion
+            //releasePomVersion = "env.releaseBranch"
             print "newPomVersion : ${newPomVersion}"
 
         }
+    }
+
+    def shellCommandOutput(command) {
+        def uuid = UUID.randomUUID()
+        def filename = "cmd-${uuid}"
+        echo filename
+        sh ("${command} > ${filename}")
+        def result = readFile(filename).trim()
+        sh "rm ${filename}"
+        return result
     }
 }
