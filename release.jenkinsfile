@@ -18,9 +18,12 @@ node {
             //releasePomVersion = "env.releaseBranch"
             print "newPomVersion : ${newPomVersion}"
 
-            sh "pwd"
-
         }
+    }
+
+    stage('Archive Package') {
+                sh "pwd"
+                sh "ls"
     }
 }
 
